@@ -94,12 +94,13 @@ const DesktopList: React.FC<DesktopListProps> = ({
                 </p>
               </div>
               <div className="flex justify-between border-t pt-2">
-                <Space>
+                <div className="grid grid-cols-5 w-full gap-0">
                   <Tooltip title="连接">
                     <Button
                       type="link"
                       icon={<LinkOutlined />}
                       disabled={desktop.status !== 'running'}
+                      className="!w-full flex justify-center"
                     />
                   </Tooltip>
                   <Tooltip title="关闭">
@@ -108,7 +109,7 @@ const DesktopList: React.FC<DesktopListProps> = ({
                       icon={<PoweroffOutlined />}
                       disabled={desktop.status === 'stopped'}
                       onClick={() => onStatusChange(desktop, 'stopped')}
-                      className="text-gray-500 hover:text-gray-600"
+                      className="!w-full flex justify-center text-gray-500 hover:text-gray-600"
                     />
                   </Tooltip>
                   <Tooltip title="连接信息">
@@ -116,6 +117,7 @@ const DesktopList: React.FC<DesktopListProps> = ({
                       type="link"
                       icon={<InfoCircleOutlined />}
                       onClick={() => onShowInfo(desktop.id)}
+                      className="!w-full flex justify-center"
                     />
                   </Tooltip>
                   <Tooltip title="重启">
@@ -124,6 +126,7 @@ const DesktopList: React.FC<DesktopListProps> = ({
                       icon={<ReloadOutlined />}
                       disabled={desktop.status === 'stopped'}
                       onClick={() => onStatusChange(desktop, 'running')}
+                      className="!w-full flex justify-center"
                     />
                   </Tooltip>
                   <Tooltip title="删除">
@@ -132,9 +135,10 @@ const DesktopList: React.FC<DesktopListProps> = ({
                       danger
                       icon={<DeleteOutlined />}
                       onClick={() => onDelete(desktop)}
+                      className="!w-full flex justify-center"
                     />
                   </Tooltip>
-                </Space>
+                </div>
               </div>
             </Card>
           </Col>

@@ -9,7 +9,7 @@ import {
   LinkOutlined,
   ReloadOutlined,
   PoweroffOutlined,
-  DisconnectOutlined
+  DisconnectOutlined,
 } from '@ant-design/icons';
 
 interface Device {
@@ -31,7 +31,9 @@ const mockDevices: Device[] = Array.from({ length: 10 }, (_, index) => ({
   id: `device-${index + 1}`,
   name: `设备 ${index + 1}`,
   createdAt: new Date(Date.now() - Math.random() * 10000000000).toISOString(),
-  status: ['running', 'error', 'stopped'][Math.floor(Math.random() * 3)] as Device['status'],
+  status: ['running', 'error', 'stopped'][
+    Math.floor(Math.random() * 3)
+  ] as Device['status'],
 }));
 
 // 生成设备桌面数据
@@ -40,9 +42,13 @@ const generateMockDeviceDesktops = (deviceId: string): DeviceDesktop[] => {
   return Array.from({ length: desktopCount }, (_, index) => ({
     id: `desktop-${deviceId}-${index + 1}`,
     name: `桌面-${index + 1}`,
-    ip: `192.168.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`,
+    ip: `192.168.${Math.floor(Math.random() * 255)}.${Math.floor(
+      Math.random() * 255
+    )}`,
     createdAt: new Date(Date.now() - Math.random() * 10000000000).toISOString(),
-    status: ['running', 'error', 'stopped'][Math.floor(Math.random() * 3)] as DeviceDesktop['status'],
+    status: ['running', 'error', 'stopped'][
+      Math.floor(Math.random() * 3)
+    ] as DeviceDesktop['status'],
   }));
 };
 
@@ -61,9 +67,9 @@ const Devices: React.FC = () => {
       okType: 'danger',
       cancelText: '取消',
       onOk: () => {
-        setDataSource(prev => prev.filter(device => device.id !== id));
+        setDataSource((prev) => prev.filter((device) => device.id !== id));
         message.success('设备已成功删除');
-      }
+      },
     });
   };
 
@@ -222,11 +228,7 @@ const Devices: React.FC = () => {
           >
             关闭
           </Button>
-          <Button
-            type="text"
-            danger
-            icon={<DeleteOutlined />}
-          >
+          <Button type="text" danger icon={<DeleteOutlined />}>
             删除
           </Button>
         </Space>
@@ -272,7 +274,7 @@ const Devices: React.FC = () => {
         dateFormatter="string"
         headerTitle={<div className="text-2xl font-bold">设备列表</div>}
         cardProps={{
-          bodyStyle: { padding: 0 }
+          bodyStyle: { padding: 0 },
         }}
         options={false}
       />
@@ -300,7 +302,7 @@ const Devices: React.FC = () => {
             dateFormatter="string"
             headerTitle={<div className="text-lg font-medium">桌面列表</div>}
             cardProps={{
-              bodyStyle: { padding: 0 }
+              bodyStyle: { padding: 0 },
             }}
           />
         )}
