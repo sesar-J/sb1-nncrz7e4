@@ -14,12 +14,7 @@ import {
   DeleteOutlined,
 } from '@ant-design/icons';
 import type { Desktop, DesktopConnection } from './types';
-import {
-  initialMockDesktops,
-  generateMockConnections,
-  getMockDesktopInfo,
-  mockDevices,
-} from './mockData';
+import { initialMockDesktops, generateMockConnections, getMockDesktopInfo, mockDevices } from './mockData';
 import CreateDesktopModal from './components/CreateDesktopModal';
 import DesktopList from './components/DesktopList';
 
@@ -27,9 +22,7 @@ const Desktops: React.FC = () => {
   const [createModalVisible, setCreateModalVisible] = useState(false);
   const [infoDrawerVisible, setInfoDrawerVisible] = useState(false);
   const [selectedDesktop, setSelectedDesktop] = useState<Desktop | null>(null);
-  const [desktopConnections, setDesktopConnections] = useState<
-    DesktopConnection[]
-  >([]);
+  const [desktopConnections, setDesktopConnections] = useState<DesktopConnection[]>([]);
   const [viewMode, setViewMode] = useState<'list' | 'card'>('list');
   const actionRef = useRef<ActionType>();
   const [searchParams, setSearchParams] = useState<any>({ status: 'running' });
@@ -43,8 +36,7 @@ const Desktops: React.FC = () => {
         createdAt: new Date().toISOString(),
         status: 'stopped',
         deviceId: values.deviceId,
-        deviceName:
-          mockDevices.find((d) => d.id === values.deviceId)?.name || '',
+        deviceName: mockDevices.find((d) => d.id === values.deviceId)?.name || '',
       };
 
       setDesktops((prev) => [newDesktop, ...prev]);
@@ -56,10 +48,7 @@ const Desktops: React.FC = () => {
     }
   };
 
-  const handleStatusChange = async (
-    desktop: Desktop,
-    newStatus: Desktop['status']
-  ) => {
+  const handleStatusChange = async (desktop: Desktop, newStatus: Desktop['status']) => {
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000));
       setDesktops((prev) =>
@@ -93,7 +82,7 @@ const Desktops: React.FC = () => {
 
   const showDesktopInfo = (desktopId: string) => {
     const info = getMockDesktopInfo(desktopId);
-    setSelectedDesktop(desktops.find((d) => d.id === desktopId) || null);
+    setSelectedDesktop(desktops.find(d => d.id === desktopId) || null);
     setDesktopConnections(generateMockConnections(desktopId));
     setInfoDrawerVisible(true);
   };
@@ -357,8 +346,7 @@ const Desktops: React.FC = () => {
         onSubmit={(params) => {
           setSearchParams(params);
         }}
-        date
-        Formatter="string"
+        date Formatter="string"
         headerTitle={<div className="text-2xl font-bold">桌面列表</div>}
         toolBarRender={() => [
           <Button
@@ -374,10 +362,8 @@ const Desktops: React.FC = () => {
         cardProps={{
           bodyStyle: { padding: 0 },
         }}
-        tableRender={(_, dom) =>
-          viewMode === 'list' ? (
-            dom
-          ) : (
+        tableRender={(_, dom) => (
+          viewMode === 'list' ? dom : (
             <div>
               <div className="flex justify-between items-center mb-4">
                 <div className="text-2xl font-bold">桌面列表</div>
@@ -400,7 +386,7 @@ const Desktops: React.FC = () => {
               />
             </div>
           )
-        }
+        )}
         options={false}
       />
 

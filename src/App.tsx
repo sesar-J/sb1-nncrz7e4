@@ -31,14 +31,7 @@ function App() {
             <BrowserRouter>
               <Routes>
                 <Route path="/login" element={<Login />} />
-                <Route
-                  path="/"
-                  element={
-                    <RequireAuth>
-                      <MainLayout />
-                    </RequireAuth>
-                  }
-                >
+                <Route path="/" element={<RequireAuth><MainLayout /></RequireAuth>}>
                   <Route index element={<Navigate to="/desktops" replace />} />
                   <Route path="desktops" element={<Desktops />} />
                   <Route path="devices" element={<Devices />} />
